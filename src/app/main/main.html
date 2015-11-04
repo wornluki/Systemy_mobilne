@@ -38,4 +38,9 @@
   </form>
 </md-content>
 
+<div ng-show="authData">
+  <p>Hello, {{ authData.password.email }}</p>
+  <button ng-click="auth.$unauth()">Logout</button>
+</div>
+
 
