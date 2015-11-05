@@ -1,4 +1,16 @@
+
+
 <md-content layout-padding>
+
+  <label for="singleSelect"> Single select: </label>
+  <select name="singleSelect" 
+          ng-change="selectAction()" 
+          ng-model="select"
+          ng-options="value.name as value.name for value in lists"> 
+  </select>
+
+  <p>{{ select }}</p>
+
   <md-list>
     <md-list-item class="md-2-line" ng-repeat="item in items">
       <md-content layout-padding layout="row">
@@ -36,11 +48,23 @@
     </md-input-container>
     <button type="submit">Add</button>
   </form>
+
+
+  <form ng-submit="addList()">
+    <md-input-container>
+      <label>Name</label>
+      <input type="text" ng-model="nameListText">
+    </md-input-container>
+    <button type="submit">Add</button>
+  </form>
 </md-content>
+
+
+
 
 <div ng-show="authData">
   <p>Hello, {{ authData.password.email }}</p>
-  <button ng-click="auth.$unauth()">Logout</button>
+  <button ng-click="logout()">Logout</button>
 </div>
 
 

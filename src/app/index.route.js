@@ -21,6 +21,14 @@
         templateUrl: 'app/register/register.html',
         controller: 'RegisterController',
         controllerAs: 'register'
+      }); 
+
+      $stateProvider
+      .state('user_get', {
+        url: '/users/:id',
+        templateUrl: 'app/user/user.html',
+        controller: 'UserController',
+        controllerAs: 'user'
       });
 
       $stateProvider
