@@ -9,8 +9,6 @@
           ng-options="value.name as value.name for value in lists"> 
   </select>
 
-  <p>{{ select }}</p>
-
   <md-list>
     <md-list-item class="md-2-line" ng-repeat="item in items">
       <md-content layout-padding layout="row">
@@ -26,16 +24,6 @@
       </md-content>
     </md-list-item>
   </md-list>
-  <!-- 
-  <ul>
-    <li ng-repeat="item in items">
-
-      <input ng-model="item.name" ng-change="items.$save(item)" />
-
-      <button ng-click="items.$remove(item)">Delete Message</button>
-    </li>
-  </ul> 
-  -->
 
   <form ng-submit="addItem()">
     <md-input-container>
@@ -58,8 +46,6 @@
     <button type="submit">Add</button>
   </form>
 </md-content>
-
-
 
 
 <div ng-show="authData">

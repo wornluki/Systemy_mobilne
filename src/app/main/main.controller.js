@@ -1,72 +1,66 @@
-(function() {
+(function () {
   'use strict';
     angular
       .module('web')
       .controller('MainController', MainController);
 
-    /** @ngInject */
-    function MainController($scope, $firebaseArray, $state, currentAuth, Auth) {
+      MainController.$inject = ['$scope', '$firebaseArray', '$state', 'listService', 'currentAuth', 'Auth'];
+      function MainController($scope, $firebaseArray, $state, listService, currentAuth, Auth) {
 
-      var ref = new Firebase("hhttps://vivid-torch-6869.firebaseio.com");
-      var listRef = ref.child('lists');
-      $scope.select = "Lista1";
-      var itemsRef = ref.child('lists').child($scope.select).child('items');
-
-      $scope.selectAction = function () {
-        itemsRef = ref.child('lists').child($scope.select).child('items');
-        console.log($scope.select);
-        console.log('Ref: '+ itemsRef);
+        var ref = new Firebase("hhttps://vivid-torch-6869.firebaseio.com");
+        var listRef = ref.child('lists');
+        $scope.select = "Lista1";
+        var itemsRef = ref.child('lists').child($scope.select).child('items');
+        var userRef = ref.child('users/'+currentAuth.uid+'/lists');
+        $scope.lists = [];
         $scope.items = $firebaseArray(itemsRef);
-      }
-      
-      
-      
 
-            
-      $scope.items = $firebaseArray(itemsRef);
-      $scope.lists = $firebaseArray(listRef);
-
-      // var listRef = ref.child('lists/'+select+'/items');
-      // $scope.selectAction = function() {
-      //     console.log($scope.select);
-      // };
-
-
-
-      $scope.addItem = function() {
-        // $scope.items.$add({
-        //   name: $scope.nameText,
-        //   quanity: $scope.quanityText
-        // });
-        console.log(itemsRef);
-        console.log($scope.select);
-        itemsRef.child($scope.nameText).set({
-          name: $scope.nameText,
-          quanity: $scope.quanityText
-        })
-
-        $scope.nameListText = "";
-        $scope.nameText = "";
-        $scope.quanityText = "";
-      };
-
-      $scope.addList = function() {
-        listRef.child($scope.nameListText).set({
-          name: $scope.nameListText,
-          items: []
+        // Working code
+        userRef.on('child_added', function(snapshot) {
+          var listKey = snapshot.key();
+          listRef.child(listKey).once('value', function(snapshot) {     
+            var a = snapshot.val();
+            $scope.lists.push(a);
+          })    
         });
-        $scope.nameListText = "";
-      };
 
-      $scope.auth = Auth;
-      $scope.auth.$onAuth(function(authData) {
-        $scope.authData = authData;
-      });
+        $scope.selectAction = function () {
+          itemsRef = ref.child('lists').child($scope.select).child('items');
+          $scope.items = $firebaseArray(itemsRef);
 
-      $scope.logout = function() {
-        Auth.$unauth()
-        $state.go('login')
+        };
+
+        $scope.addItem = function() {
+
+          itemsRef.child($scope.nameText).set({
+            name: $scope.nameText,
+            quanity: $scope.quanityText
+          });
+
+          $scope.nameListText = "";
+          $scope.nameText = "";
+          $scope.quanityText = "";
+        };
+
+        $scope.addList = function() {
+          listRef.child($scope.nameListText).set({
+            name: $scope.nameListText,
+            items: []
+          });
+          userRef.child($scope.nameListText).set(true);
+          $scope.nameListText = "";
+
+        };
+
+        $scope.auth = Auth;
+        $scope.auth.$onAuth(function(authData) {
+          $scope.authData = authData;
+        });
+
+        $scope.logout = function() {
+          Auth.$unauth();
+          $state.go('login');
+        };
+        
       }
-      
-    }
   })();

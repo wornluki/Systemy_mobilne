@@ -1,12 +1,16 @@
-(function() {
-  'use strict';
+(function () {
+	'use strict';
 
-  angular
-    .module('web')
-	.factory('Auth', Auth);
+		angular
+			.module('web')
+			.factory('Auth', Auth);
 
-  function Auth($firebaseAuth) {
-    var ref = new Firebase("https://vivid-torch-6869.firebaseio.com/");
-    return $firebaseAuth(ref);
-  }
+		Auth.$inject = ['$firebaseAuth'];
+
+		function Auth($firebaseAuth) {
+			var ref = new Firebase("https://vivid-torch-6869.firebaseio.com/");
+			return $firebaseAuth(ref);
+	 	}
 })();
+
+  

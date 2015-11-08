@@ -4,4 +4,5 @@
 
   angular
     .module('web')
+    .constant('FIREBASE_URL', "https://vivid-torch-6869.firebaseio.com/")
 })();

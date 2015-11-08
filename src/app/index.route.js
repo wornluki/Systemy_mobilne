@@ -24,14 +24,6 @@
       }); 
 
       $stateProvider
-      .state('user_get', {
-        url: '/users/:id',
-        templateUrl: 'app/user/user.html',
-        controller: 'UserController',
-        controllerAs: 'user'
-      });
-
-      $stateProvider
         .state('home', {
           url: '/',
           templateUrl: 'app/main/main.html',
