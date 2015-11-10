@@ -9,26 +9,23 @@
           ng-options="value.name as value.name for value in lists">
   </select>
 
-  <!-- Branch develop  -->
-
-
-	 <md-content class="md-padding">
-		 <md-list>
-	    <md-list-item class="md-2-line" ng-repeat="item in items">
-	      <md-content layout-padding layout="row">
-	        <md-input-container>
-	          <input type="text" ng-model="item.name" ng-change="items.$save(item)">
-	        </md-input-container>
-	        <md-input-container>
-	          <input type="number" ng-model="item.quanity" ng-change="items.$save(item)">
-	        </md-input-container>
-	        <md-input-container>
-	          <md-button ng-click="items.$remove(item)" class="md-raised md-warn">Delete</md-button>
-	        </md-input-container>
-	      </md-content>
-	    </md-list-item>
-	  </md-list>
-	</md-content>
+  <md-content class="md-padding">
+   <md-list>
+    <md-list-item class="md-2-line" ng-repeat="item in items">
+      <md-content layout-padding layout="row">
+        <md-input-container>
+          <input type="text" ng-model="item.name" ng-change="items.$save(item)">
+        </md-input-container>
+        <md-input-container>
+          <input type="number" ng-model="item.quanity" ng-change="items.$save(item)">
+        </md-input-container>
+        <md-input-container>
+          <md-button ng-click="items.$remove(item)" class="md-raised md-warn">Delete</md-button>
+        </md-input-container>
+      </md-content>
+    </md-list-item>
+  </md-list>
+  </md-content>
 
 
   <!-- <md-content>
