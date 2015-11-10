@@ -19,18 +19,16 @@
     ////////////
 
     function getListsByUser(uid) {
-
-      
       var userRef = firebaseDataService.users.child(uid).child('lists');
       var vm = [];
       userRef.on('child_added', function(snapshot) {
         var listKey = snapshot.key();
-        firebaseDataService.lists.child(listKey).once('value', function(snapshot) {     
-          var a = snapshot.val();    
+        firebaseDataService.lists.child(listKey).once('value', function(snapshot) {
+          var a = snapshot.val();
           vm.push(a);
-        })    
+        })
       });
- 
+
       return vm;
       console.log(vm);
 
