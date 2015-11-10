@@ -3,11 +3,13 @@
 <md-content layout-padding>
 
   <label for="singleSelect"> Single select: </label>
-  <select name="singleSelect" 
-          ng-change="selectAction()" 
+  <select name="singleSelect"
+          ng-change="selectAction()"
           ng-model="select"
-          ng-options="value.name as value.name for value in lists"> 
+          ng-options="value.name as value.name for value in lists">
   </select>
+
+  <!-- Branch develop  -->
 
 
 	 <md-content class="md-padding">
@@ -86,5 +88,3 @@
   <p>Hello, {{ authData.password.email }}</p>
   <md-button ng-click="logout()" class="md-raised md-warn">Logout</md-button>
 </div>
-
-
