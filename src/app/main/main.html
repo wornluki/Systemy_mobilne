@@ -4,10 +4,12 @@
 
   <label for="singleSelect"> Single select: </label>
   <select name="singleSelect"
-          ng-change="selectAction()"
-          ng-model="select"
-          ng-options="value.name as value.name for value in lists">
+          ng-change="vm.selectAction"
+          ng-model="vm.select"
+          ng-options="value as value for value in vm.lists">
   </select>
+
+  {{vm.lists}}
 
   <md-content class="md-padding">
    <md-list>

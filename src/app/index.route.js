@@ -28,7 +28,7 @@
           url: '/',
           templateUrl: 'app/main/main.html',
           controller: 'MainController',
-          controllerAs: 'main',
+          controllerAs: 'vm',
 
           resolve: {
             // controller will not be loaded until $requireAuth resolves

@@ -4,8 +4,18 @@
       .module('web')
       .controller('MainController', MainController);
 
-      MainController.$inject = ['$scope', '$firebaseArray', '$state', 'listService', 'currentAuth', 'Auth'];
-      function MainController($scope, $firebaseArray, $state, listService, currentAuth, Auth) {
+      MainController.$inject = ['$scope', '$firebaseArray', '$state', 'firebaseDataService', 'listService', 'currentAuth', 'Auth'];
+      function MainController($scope, $firebaseArray, $state, firebaseDataService, listService, currentAuth, Auth) {
+
+        var vm = this;
+
+        vm.selectAction = selectAction;
+        vm.addItem = addItem;
+        vm.select = "Lista1";
+        vm.lists = listService.getListsByUser(currentAuth.uid);
+        vm.items = $firebaseArray(firebaseDataService.lists.child(vm.select).child('items'));
+        
+        console.log(vm.lists)
 
         var ref = new Firebase("hhttps://vivid-torch-6869.firebaseio.com");
         var listRef = ref.child('lists');
@@ -15,22 +25,26 @@
         $scope.lists = [];
         $scope.items = $firebaseArray(itemsRef);
 
-        // Working code
-        userRef.on('child_added', function(snapshot) {
-          var listKey = snapshot.key();
-          listRef.child(listKey).once('value', function(snapshot) {     
-            var a = snapshot.val();
-            $scope.lists.push(a);
-          })    
-        });
+        // // Working code
+        // userRef.on('child_added', function(snapshot) {
+        //   var listKey = snapshot.key();
+        //   listRef.child(listKey).once('value', function(snapshot) {     
+        //     var a = snapshot.val();
+        //     $scope.lists.push(a);
+        //   });  
+        // });
 
-        $scope.selectAction = function () {
+
+        //////////
+
+
+        function selectAction() {
           itemsRef = ref.child('lists').child($scope.select).child('items');
           $scope.items = $firebaseArray(itemsRef);
 
         };
 
-        $scope.addItem = function() {
+        function addItem() {
 
           itemsRef.child($scope.nameText).set({
             name: $scope.nameText,
