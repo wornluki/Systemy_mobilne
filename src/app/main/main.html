@@ -4,7 +4,7 @@
 
   <label for="singleSelect"> Single select: </label>
   <select name="singleSelect"
-          ng-change="vm.selectAction"
+          ng-change="vm.selectAction()"
           ng-model="vm.select"
           ng-options="value as value for value in vm.lists">
   </select>
@@ -13,16 +13,16 @@
 
   <md-content class="md-padding">
    <md-list>
-    <md-list-item class="md-2-line" ng-repeat="item in items">
+    <md-list-item class="md-2-line" ng-repeat="item in vm.items">
       <md-content layout-padding layout="row">
         <md-input-container>
-          <input type="text" ng-model="item.name" ng-change="items.$save(item)">
+          <input type="text" ng-model="item.name" ng-change="vm.items.$save(item)">
         </md-input-container>
         <md-input-container>
-          <input type="number" ng-model="item.quanity" ng-change="items.$save(item)">
+          <input type="number" ng-model="item.quanity" ng-change="vm.items.$save(item)">
         </md-input-container>
         <md-input-container>
-          <md-button ng-click="items.$remove(item)" class="md-raised md-warn">Delete</md-button>
+          <md-button ng-click="vm.items.$remove(item)" class="md-raised md-warn">Delete</md-button>
         </md-input-container>
       </md-content>
     </md-list-item>
@@ -55,7 +55,7 @@
   </md-content> -->
 
 	<h4>Dodaj przedmiot do listy</h4>
-  <form ng-submit="addItem()">
+  <form ng-submit="vm.addItem()">
 	  <md-content layout-padding layout="row">
 	    <md-input-container>
 	      <label>Name</label>
@@ -71,7 +71,7 @@
 
 	<h4>Dodaj listę:</h4>
 
-  <form ng-submit="addList()">
+  <form ng-submit="vm.addList()">
   	<md-content layout-padding layout="row">
 	    <md-input-container>
 	      <label>Name</label>
@@ -85,5 +85,5 @@
 
 <div ng-show="authData">
   <p>Hello, {{ authData.password.email }}</p>
-  <md-button ng-click="logout()" class="md-raised md-warn">Logout</md-button>
+  <md-button ng-click="vm.logout" class="md-raised md-warn">Logout</md-button>
 </div>
