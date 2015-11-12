@@ -18,10 +18,10 @@
         // Working code
         userRef.on('child_added', function(snapshot) {
           var listKey = snapshot.key();
-          listRef.child(listKey).once('value', function(snapshot) {     
+          listRef.child(listKey).once('value', function(snapshot) {
             var a = snapshot.val();
             $scope.lists.push(a);
-          })    
+          })
         });
 
         $scope.selectAction = function () {
@@ -61,6 +61,6 @@
           Auth.$unauth();
           $state.go('login');
         };
-        
+
       }
   })();
