@@ -9,7 +9,7 @@
 
         var vm = this;
         auth();
-        vm.selectAction = selectAction;
+        vm.selectAction2 = selectAction2;
         vm.addItem = addItem;
         vm.select = "Lista1";
         vm.lists = listService.getListsByUser(currentAuth.uid);
@@ -38,10 +38,11 @@
 
         ////////// Functions //
 
-
-        function selectAction() {
-          vm.items = $firebaseArray(firebaseDataService.lists.child(vm.select).child('items'));
+        function selectAction2(select, event) {
+          vm.items = $firebaseArray(firebaseDataService.lists.child(select).child('items'));
           console.log(vm.items)
+          // $(event.target).addClass('active');
+
         };
 
         function addItem() {
