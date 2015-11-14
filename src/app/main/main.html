@@ -16,10 +16,7 @@
     </div>
     <div class="add-list">
       <form ng-submit="vm.addList()">
-        <md-input-container>
-          <label>Dodaj listę: </label>
-          <input type="text" ng-model="nameListText">
-        </md-input-container>
+        <input type="text" class="white" placeholder="Dodaj listę" ng-model="nameListText">
       </form>
     </div>
   </div>
@@ -27,10 +24,8 @@
   <div class="list">
     <div class="add-item">
       <form ng-submit="vm.addItem()">
-        <label>Name</label>
-        <input type="text" ng-model="nameText">
-        <label>Quanity</label>
-        <input type="number" value="1" max="10" ng-model="quanityText">
+        <input type="text" placeholder="Name" ng-model="nameText">
+        <input type="number" placeholder="Quanity" value="1" max="10" ng-model="quanityText">
         <md-button type="submit" class="md-raised">Add</md-button>
       </form>
     </div>
@@ -110,4 +105,3 @@
 
   <md-button ng-click="vm.logout" class="md-raised md-warn">Logout</md-button>
 </div>
-

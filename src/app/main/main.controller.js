@@ -16,25 +16,7 @@
         vm.items = $firebaseArray(firebaseDataService.lists.child(vm.select).child('items'));
         vm.addList = addList;
         vm.logout = logout;
-        // console.log(vm.lists)
-
-        // var ref = new Firebase("hhttps://vivid-torch-6869.firebaseio.com");
-        // var listRef = ref.child('lists');
-        // $scope.select = "Lista1";
-        // var itemsRef = ref.child('lists').child($scope.select).child('items');
-        // var userRef = ref.child('users/'+currentAuth.uid+'/lists');
-        // $scope.lists = [];
-        // $scope.items = $firebaseArray(itemsRef);
-
-        // // Working code
-        // userRef.on('child_added', function(snapshot) {
-        //   var listKey = snapshot.key();
-        //   listRef.child(listKey).once('value', function(snapshot) {
-        //     var a = snapshot.val();
-        //     $scope.lists.push(a);
-        //   });
-        // });
-
+      
 
         ////////// Functions //
 

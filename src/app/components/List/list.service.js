@@ -36,14 +36,6 @@
     function getItemsRef(select) {
       return firebaseDataService.lists.child(select).child('items');
     }
-
-    // function Party() {
-    //   this.name = '';
-    //   this.phone = '';
-    //   this.size = '';
-    //   this.done = false;
-    //   this.notified = false;
-    // }
   }
 
 })();
