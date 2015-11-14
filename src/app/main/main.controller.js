@@ -16,14 +16,13 @@
         vm.items = $firebaseArray(firebaseDataService.lists.child(vm.select).child('items'));
         vm.addList = addList;
         vm.logout = logout;
-      
+
 
         ////////// Functions //
 
         function selectAction2(select, event) {
           vm.items = $firebaseArray(firebaseDataService.lists.child(select).child('items'));
-          console.log(vm.items)
-          // $(event.target).addClass('active');
+          vm.select = select;
 
         };
 
@@ -33,7 +32,7 @@
           //   name: $scope.nameText,
           //   quanity: $scope.quanityText
           // });
-          console.log(vm.items);
+          console.log(vm.select);
           iRef.child($scope.nameText).set({
             name: $scope.nameText,
             quanity: $scope.quanityText

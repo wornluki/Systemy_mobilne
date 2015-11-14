@@ -12,7 +12,6 @@
     var service = {
       getListsByUser: getListsByUser,
       getItemsRef: getItemsRef
-      // Party: Party
     };
 
     return service;
