@@ -2,13 +2,14 @@ input, textarea
   padding: 0 0 5px 10px
   background-color: transparent
   border: none
-  	bottom: 1px solid $primary-color
-
-  &:focus
-  	outline: 0
-  	bottom: 1px solid $primary-color
+  	bottom: 1px solid rgba(0, 0, 0, 0.2)
 
 
+  &::-webkit-input-placeholder
+    color: rgba(0, 0, 0, 0.5)
+    font-style: italic
+    font-size: 14px
+    letter-spacing: 1.75px
 
   &[type=submit]
   	margin: 20px auto
@@ -16,7 +17,7 @@ input, textarea
 
   &.white
     border: none
-    	bottom: 1px solid rgba(255, 255, 255, 0.6)
+    	bottom: 1px solid rgba(0, 255, 255, 0.6)
     width: 100%
 
     &::-webkit-input-placeholder
