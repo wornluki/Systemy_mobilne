@@ -1,0 +1,32 @@
+input, textarea
+  padding: 0 0 5px 10px
+  background-color: transparent
+  border: none
+  	bottom: 1px solid rgba(0, 0, 0, 0.2)
+
+
+  &::-webkit-input-placeholder
+    color: rgba(0, 0, 0, 0.5)
+    font-style: italic
+    font-size: 14px
+    letter-spacing: 1.75px
+
+  &[type=submit]
+  	margin: 20px auto
+  	border: 0
+
+  &.white
+    border: none
+    	bottom: 1px solid rgba(0, 255, 255, 0.6)
+    width: 100%
+
+    &::-webkit-input-placeholder
+      color: rgba(255, 255, 255, 0.5)
+      font-style: italic
+      font-size: 14px
+      letter-spacing: 1.5px
+
+    &:focus
+    	outline: 0
+    	border: none
+      	bottom: 1px solid rgba(255, 255, 255, 0.8)
