@@ -35,8 +35,11 @@
           console.log(vm.select);
           iRef.child($scope.nameText).set({
             name: $scope.nameText,
-            quanity: $scope.quanityText
+            quanity: $scope.quanityText,
+            addedByUser: currentAuth.password.email,
+            completed: false
           })
+          console.log(currentAuth);
 
           $scope.nameListText = "";
           $scope.nameText = "";
