@@ -1,3 +1,4 @@
-* TODOS: *
+## Todos:
+
 [] Make Lists & Items directives
 []
