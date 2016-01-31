@@ -234,6 +234,13 @@ samp {
   font-size: 1em;
 }
 
+p {
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+
 /* Forms
    ========================================================================== */
 

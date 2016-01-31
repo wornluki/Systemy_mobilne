@@ -23,27 +23,18 @@
         function selectAction2(select, event) {
           vm.items = $firebaseArray(firebaseDataService.lists.child(select).child('items'));
           vm.select = select;
-
         };
 
         function addItem() {
           var iRef = listService.getItemsRef(vm.select);
-          // itemsRef.child($scope.nameText).set({
-          //   name: $scope.nameText,
-          //   quanity: $scope.quanityText
-          // });
-          console.log(vm.select);
+
           iRef.child($scope.nameText).set({
             name: $scope.nameText,
-            quanity: $scope.quanityText,
             addedByUser: currentAuth.password.email,
             completed: false
           })
-          console.log(currentAuth);
 
-          $scope.nameListText = "";
           $scope.nameText = "";
-          $scope.quanityText = "";
         };
 
         function addList() {
