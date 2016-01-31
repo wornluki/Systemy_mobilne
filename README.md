@@ -1,4 +1,4 @@
 ## Todos:
 
-[] Make Lists & Items directives
-[]
+- [ ] Make Lists & Items directives
+- [ ]
