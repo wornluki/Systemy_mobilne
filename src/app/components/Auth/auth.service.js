@@ -6,11 +6,8 @@
 			.factory('Auth', Auth);
 
 		Auth.$inject = ['$firebaseAuth'];
-
+		// Utworzenie instancji Auth, utworzenie nowego obiektu
 		function Auth($firebaseAuth) {
-			var ref = new Firebase("https://vivid-torch-6869.firebaseio.com/");
-			return $firebaseAuth(ref);
+			return $firebaseAuth();
 	 	}
 })();
-
-  

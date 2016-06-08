@@ -21,7 +21,7 @@
         templateUrl: 'app/register/register.html',
         controller: 'RegisterController',
         controllerAs: 'register'
-      }); 
+      });
 
       $stateProvider
         .state('home', {
@@ -36,8 +36,10 @@
             "currentAuth": ["Auth", function(Auth) {
               // $requireAuth returns a promise so the resolve waits for it to complete
               // If the promise is rejected, it will throw a $stateChangeError (see above)
-              return Auth.$requireAuth();
+              return Auth.$requireSignIn();
             }]
+
+
           }
         });
 

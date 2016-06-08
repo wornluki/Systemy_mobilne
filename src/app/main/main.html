@@ -3,14 +3,18 @@
   <div class="user">
     <i class="fa fa-cog">
     </i>
-    <p class="user_name">{{ authData.password.email }}</p>
+    <img ng-src="{{ vm.user.photoURL }}"></img>
+    <p class="user_name">{{ vm.user.displayName }}</p>
   </div>
 </header>
 
 <div class="wrapper">
 
   <div class="lists">
-    <h2>LISTS</h2>
+    <div class="list--header">
+      <h2>LISTS</h2>
+    </div>
+
     <div class="list-buttons">
       <p class="list-name" ng-class='{active : $first}' ng-repeat="item in vm.lists" ng-click="vm.selectAction2(item, $event)">{{ item }}</p>
     </div>
@@ -24,8 +28,8 @@
 
   <div class="list">
     <div class="add-item">
-      <form ng-submit="vm.addItem()">
-        <input type="text" placeholder="Name" ng-model="nameText">
+      <form class="add" ng-submit="vm.addItem()">
+        <input type="text" placeholder="Name" class="long" ng-model="nameText">
         <!-- <input type="number" placeholder="Quanity" value="1" max="10" ng-model="quanityText"> -->
         <md-button type="submit" class="md-raised">Add</md-button>
       </form>
@@ -33,7 +37,7 @@
     <div class="items">
       <div class="item" ng-repeat="item in vm.items | orderBy:'completed'">
         <input type="checkbox" ng-model="item.completed" ng-change="vm.items.$save(item)" value="false">
-        <input type="text" ng-class="{done : item.completed}" ng-model="item.name" ng-change="vm.items.$save(item)">
+        <input type="text" ng-class="{done : item.completed}" class="itemInput" ng-model="item.name" ng-change="vm.items.$save(item)">
 
 
         <!-- <input type="number" ng-model="item.quanity" ng-change="vm.items.$save(item)"> -->
