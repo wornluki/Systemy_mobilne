@@ -4,6 +4,7 @@
       .module('web')
       .controller('MainController', MainController);
 
+
       MainController.$inject = ['$scope', '$firebaseArray', '$state', 'Auth', 'listService', 'currentAuth', 'firebaseDataService', 'Auth'];
       function MainController($scope, $firebaseArray, $state, Aut, listService, currentAuth, firebaseDataService, Auth) {
 
@@ -69,7 +70,5 @@
         } else {
           console.log("Signed out");
         }
-
-
       }
   })();
