@@ -4,13 +4,18 @@
       .module('web')
       .controller('RegisterController', RegisterController);
 
+    RegisterController.$inject = ['$scope', 'firebaseDataService'];
+
+
     /** @ngInject */
-    function RegisterController($scope, $state, $location, Auth) {
+    function RegisterController($scope, $state, $location, Auth, firebaseDataService) {
 
-      var ref = new Firebase("https://vivid-torch-6869.firebaseio.com/");
-      var usersRef = ref.child('users');
+      // var ref = firebaseDataService.root;
+      // console.log(firebaseDataService)
+      // var usersRef = firebaseDataService.service.users;
+      
 
-      console.log(usersRef)
+      // console.log(usersRef)
 
       $scope.registerUser = function() {
         $scope.error = null;

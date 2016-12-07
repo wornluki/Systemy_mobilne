@@ -22,10 +22,9 @@
       var userRef = firebaseDataService.users.child(uid).child('lists');
       var vm = [];
       userRef.on('child_added', function(snapshot) {
-        var listKey = snapshot.key();
+        var listKey = snapshot.key;
         firebaseDataService.lists.child(listKey).once('value', function(snapshot) {
           var a = snapshot.exportVal();
-          //console.log(a["name"])
           vm.push(a["name"]);
         })
       });

@@ -7,16 +7,17 @@
     /** @ngInject */
     function LoginController($scope, $state, Auth) {
 
-      var email = $scope.email
-      var password = $scope.password
+      var email = $scope.email;
+      var password = $scope.password;
       // logowanie przy użyciu adresu email po rejestracji
       $scope.loginUser = function() {
-        Auth.$signInWithEmailAndPassword(email, password).then(function(user) {
+        console.log($scope.email)
+        Auth.$signInWithEmailAndPassword($scope.email, $scope.password).then(function(user) {
           console.log("Logged in as:", user );
           $scope.user = user;
           $state.go('home');
         }).catch(function(error) {
-          console.error("Authentication failed:", error);
+          console.error("Authentication failed:", error.message);
         });
       };
       // Logowanie przy użyciu zewnętrznego providera
