@@ -1,4 +1,4 @@
-<h2>Zaloguj się!</h2>
+<!-- <h2>Zaloguj się!</h2>
 <form ng-submit="loginUser()">
     <md-input-container>
       <label>Email</label>
@@ -11,5 +11,29 @@
     <button type="submit">Login user</button>
   </form>
 
-<p>Jeżeli nie masz jeszcze konta, <a href="#/register">zarejestruj się!</a></p>
-</md-content>
+<p>Jeżeli nie masz jeszcze konta, <a href="#/register">zarejestruj się!</a></p> -->
+
+<div class="login-wrapper">
+  <div class="login-form">
+    <h2>SHOPING LIST</h2>
+    <!-- <form ng-submit="loginUser()"> -->
+    <div class="inputs">
+      <input type="email" placeholder="email" ng-model="email">
+      <input type="password" placeholder="password" ng-model="password">
+    </div>
+    <div class="buttons">
+      <button ng-click="loginUser()" type="submit">Sign in</button>
+
+
+      <p class="button"><a href="#/register">Sign up</a></p>
+      <div class="buttonLogin">
+          <button ng-click="loginWithGoogle()" type="submit">Sign in with Google</button>
+          <button ng-click="loginWithGitHub()" type="submit">Sign in with GitHub</button>
+        </div>
+    </div>
+
+
+    <!-- </form> -->
+
+  </div>
+</div>

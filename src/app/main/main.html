@@ -1,87 +1,51 @@
+<header class="header">
+  <p class="logo">SHOPING LIST</p>
+  <div class="user">
+    <i class="fa fa-cog">
+    </i>
+    <img ng-src="{{ vm.user.photoURL }}"></img>
+    <p class="user_name">{{ vm.user.email }}</p>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <div class="lists">
+    <div class="list--header">
+      <h2>LISTS</h2>
+    </div>
+
+    <div class="list-buttons">
+      <p class="list-name" ng-class='{active : vm.select == item}' ng-repeat="item in vm.lists | orderBy:'item'" ng-click="vm.selectAction2(item, $event)">{{ item }}</p>
+    </div>
+    <div class="add-list">
+      <form ng-submit="vm.addList()">
+        <input type="text" class="white" placeholder="Dodaj listę" ng-model="nameListText">
+      </form>
+    </div>
+    <md-button ng-click="vm.logout()" class="md-raised md-warn">Logout</md-button>
+  </div>
+
+  <div class="list">
+    <div class="add-item">
+      <form class="add" ng-submit="vm.addItem()">
+        <input type="text" placeholder="Name" class="long" ng-model="nameText">
+        <input type="text" placeholder="Cost" class="short" ng-model="cost">
+        <!-- <input type="number" placeholder="Quanity" value="1" max="10" ng-model="quanityText"> -->
+        <md-button type="submit" class="md-raised">Add</md-button>
+      </form>
+    </div>
+    <div class="items">
+      <div class="item" ng-repeat="item in vm.items | orderBy:'completed'">
+        <input type="checkbox" ng-model="item.completed" ng-change="vm.items.$save(item)" value="false">
+        <input type="text" ng-class="{done : item.completed}" class="itemInput" ng-model="item.name" ng-change="vm.items.$save(item)">
+        <input type="text" ng-class="{done : item.completed}" class="itemInput" ng-model="item.cost" ng-change="vm.items.$save(item)">
 
 
-<md-content layout-padding>
+        <!-- <input type="number" ng-model="item.quanity" ng-change="vm.items.$save(item)"> -->
+        <!-- <md-button ng-click="vm.items.$remove(item)" class="md-raised md-warn">Delete</md-button> -->
+      </div>
+    </div>
+  </div>
 
-  <label for="singleSelect"> Single select: </label>
-  <select name="singleSelect"
-          ng-change="selectAction()"
-          ng-model="select"
-          ng-options="value.name as value.name for value in lists">
-  </select>
-
-  <md-content class="md-padding">
-   <md-list>
-    <md-list-item class="md-2-line" ng-repeat="item in items">
-      <md-content layout-padding layout="row">
-        <md-input-container>
-          <input type="text" ng-model="item.name" ng-change="items.$save(item)">
-        </md-input-container>
-        <md-input-container>
-          <input type="number" ng-model="item.quanity" ng-change="items.$save(item)">
-        </md-input-container>
-        <md-input-container>
-          <md-button ng-click="items.$remove(item)" class="md-raised md-warn">Delete</md-button>
-        </md-input-container>
-      </md-content>
-    </md-list-item>
-  </md-list>
-  </md-content>
-
-
-  <!-- <md-content>
-    <md-tabs md-dynamic-height md-border-bottom >
-      <md-tab ng-repeat="list in lists" ng-change="selectAction()" ng-model="select" label="{{ list.name }}">
-        <md-content class="md-padding">
-        	 <md-list>
-				    <md-list-item class="md-2-line" ng-repeat="item in items">
-				      <md-content layout-padding layout="row">
-				        <md-input-container>
-				          <input type="text" ng-model="item.name" ng-change="items.$save(item)">
-				        </md-input-container>
-				        <md-input-container>
-				          <input type="number" ng-model="item.quanity" ng-change="items.$save(item)">
-				        </md-input-container>
-				        <md-input-container>
-				          <md-button ng-click="items.$remove(item)" class="md-raised md-warn">Delete</md-button>
-				        </md-input-container>
-				      </md-content>
-				    </md-list-item>
-				  </md-list>
-        </md-content>
-      </md-tab>
-    </md-tabs>
-  </md-content> -->
-
-	<h4>Dodaj przedmiot do listy</h4>
-  <form ng-submit="addItem()">
-	  <md-content layout-padding layout="row">
-	    <md-input-container>
-	      <label>Name</label>
-	      <input type="text" ng-model="nameText">
-	    </md-input-container>
-	    <md-input-container>
-	      <label>Quanity</label>
-	      <input type="number" value="1" max="10" ng-model="quanityText">
-	    </md-input-container>
-	    <md-button type="submit" class="md-raised">Add</md-button>
-	  </md-content>
-  </form>
-
-	<h4>Dodaj listę:</h4>
-
-  <form ng-submit="addList()">
-  	<md-content layout-padding layout="row">
-	    <md-input-container>
-	      <label>Name</label>
-	      <input type="text" ng-model="nameListText">
-	    </md-input-container>
-	    <md-button type="submit" class="md-raised">Add</md-button>
-  	</md-content>
-  </form>
-</md-content>
-
-
-<div ng-show="authData">
-  <p>Hello, {{ authData.password.email }}</p>
-  <md-button ng-click="logout()" class="md-raised md-warn">Logout</md-button>
 </div>

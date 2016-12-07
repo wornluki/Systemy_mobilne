@@ -4,63 +4,71 @@
       .module('web')
       .controller('MainController', MainController);
 
-      MainController.$inject = ['$scope', '$firebaseArray', '$state', 'listService', 'currentAuth', 'Auth'];
-      function MainController($scope, $firebaseArray, $state, listService, currentAuth, Auth) {
 
-        var ref = new Firebase("hhttps://vivid-torch-6869.firebaseio.com");
-        var listRef = ref.child('lists');
-        $scope.select = "Lista1";
-        var itemsRef = ref.child('lists').child($scope.select).child('items');
-        var userRef = ref.child('users/'+currentAuth.uid+'/lists');
-        $scope.lists = [];
-        $scope.items = $firebaseArray(itemsRef);
+      MainController.$inject = ['$scope', '$firebaseArray', '$state', 'Auth', 'listService', 'currentAuth', 'firebaseDataService', 'Auth'];
+      function MainController($scope, $firebaseArray, $state, Aut, listService, currentAuth, firebaseDataService, Auth) {
 
-        // Working code
-        userRef.on('child_added', function(snapshot) {
-          var listKey = snapshot.key();
-          listRef.child(listKey).once('value', function(snapshot) {
-            var a = snapshot.val();
-            $scope.lists.push(a);
-          })
-        });
-
-        $scope.selectAction = function () {
-          itemsRef = ref.child('lists').child($scope.select).child('items');
-          $scope.items = $firebaseArray(itemsRef);
-
+        var vm = this;
+        // auth();
+        vm.selectAction2 = selectAction2;
+        vm.addItem = addItem;
+        vm.select = "Lista1";
+        vm.lists = listService.getListsByUser(currentAuth.uid) || [];
+        vm.items = $firebaseArray(firebaseDataService.lists.child(vm.select).child('items'));
+        vm.addList = addList;
+        vm.logout = logout;
+        vm.stateActive = '';
+        console.log(vm.lists)
+        //
+        //
+        // ////////// Functions //
+        function selectAction2(select, event) {
+          vm.items = $firebaseArray(firebaseDataService.lists.child(select).child('items'));
+          
+          vm.select = select;
+          vm.stateActive = select;
         };
-
-        $scope.addItem = function() {
-
-          itemsRef.child($scope.nameText).set({
+        
+        function addItem() {
+          var iRef = listService.getItemsRef(vm.select);
+          console.log(currentAuth.email);
+          iRef.child($scope.nameText).set({
             name: $scope.nameText,
-            quanity: $scope.quanityText
-          });
-
-          $scope.nameListText = "";
+            addedByUser: currentAuth.email,
+            completed: false,
+            cost: $scope.cost
+          })
+        
           $scope.nameText = "";
-          $scope.quanityText = "";
+          $scope.cost = "";
         };
-
-        $scope.addList = function() {
-          listRef.child($scope.nameListText).set({
+        
+        function addList() {
+          firebaseDataService.lists.child($scope.nameListText).set({
             name: $scope.nameListText,
             items: []
           });
-          userRef.child($scope.nameListText).set(true);
+          firebaseDataService.users.child(currentAuth.uid).child('lists').child($scope.nameListText).set(true);
           $scope.nameListText = "";
-
         };
-
-        $scope.auth = Auth;
-        $scope.auth.$onAuth(function(authData) {
-          $scope.authData = authData;
-        });
-
-        $scope.logout = function() {
-          Auth.$unauth();
+        //
+        function logout() {
+          Auth.$signOut();
           $state.go('login');
         };
+        //
+        // function auth() {
+        //   $scope.auth = Auth;
+        //   $scope.auth.$onAuth(function(authData) {
+        //     $scope.authData = authData;
+        //   });
+        // };
+        vm.user = Auth.$getAuth();
 
+        if (vm.user) {
+          //console.log("Signed in as:", vm.user);
+        } else {
+          console.log("Signed out");
+        }
       }
   })();

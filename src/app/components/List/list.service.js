@@ -10,8 +10,8 @@
   function listService($firebaseArray, firebaseDataService) {
 
     var service = {
-      getListsByUser: getListsByUser
-      // Party: Party
+      getListsByUser: getListsByUser,
+      getItemsRef: getItemsRef
     };
 
     return service;
@@ -22,26 +22,18 @@
       var userRef = firebaseDataService.users.child(uid).child('lists');
       var vm = [];
       userRef.on('child_added', function(snapshot) {
-        var listKey = snapshot.key();
+        var listKey = snapshot.key;
         firebaseDataService.lists.child(listKey).once('value', function(snapshot) {
-          var a = snapshot.val();
-          vm.push(a);
+          var a = snapshot.exportVal();
+          vm.push(a["name"]);
         })
       });
-
       return vm;
-      console.log(vm);
-
-      // return $firebaseArray(firebaseDataService.users.child(uid).child('lists'));
     }
 
-    // function Party() {
-    //   this.name = '';
-    //   this.phone = '';
-    //   this.size = '';
-    //   this.done = false;
-    //   this.notified = false;
-    // }
+    function getItemsRef(select) {
+      return firebaseDataService.lists.child(select).child('items');
+    }
   }
 
 })();

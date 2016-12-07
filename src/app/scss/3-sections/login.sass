@@ -1,0 +1,73 @@
+.login-wrapper
+  background:
+    image: url('../assets/images/bg.jpeg')
+    position: center
+    size: cover
+  height: 100vh
+  width: 100vw
+  display: flex
+  align-items: center
+
+.login-form
+  background-color: #fff
+  height: 70%
+  margin: 0 auto
+  width: 530px
+  border-radius: 10px
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-between
+  background:
+    image: url('../assets/images/traingle.png')
+    repeat: no-repeat
+
+  .loginButtons
+    display: flex
+    margin-top: -20px
+
+  h2
+    margin-top: 50px
+    letter-spacing: 2px
+    color: #fff
+
+  p
+    margin-top: 20px
+  form
+    display: flex
+    flex-direction: column
+    align-items: center
+
+  input
+    margin-bottom: 20px
+    outline: none
+    &:last-child
+      margin-bottom: 0
+  button, p
+    &[type=submit]
+      border: 0
+        radius: 5px
+      padding: 15px
+      margin-top: 20px
+      // margin-top: 20px
+      background-color: $accent-color
+      color: #fff
+      letter-spacing: 1.5px
+  a
+    text-decoration: none
+    color: #000
+    letter-spacing: 1.5px
+    // text-align: center
+    // margin: 0 auto
+  .inputs
+    display: flex
+    flex-direction: column
+    margin-top: 40px
+    width: 60%
+
+  .buttons
+    display: flex
+    flex-direction: column
+    margin-bottom: 10px
+    align-items: center
+    justify-content: space-between
