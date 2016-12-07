@@ -11,7 +11,8 @@
 
     var service = {
       getListsByUser: getListsByUser,
-      getItemsRef: getItemsRef
+      getItemsRef: getItemsRef,
+      //getUser: getUser
     };
 
     return service;
@@ -30,6 +31,7 @@
       });
       return vm;
     }
+
 
     function getItemsRef(select) {
       return firebaseDataService.lists.child(select).child('items');

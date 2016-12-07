@@ -4,7 +4,7 @@
       .module('web')
       .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$scope', 'firebaseDataService'];
+    RegisterController.$inject = ['$scope','Auth', 'firebaseDataService'];
 
 
     /** @ngInject */
@@ -29,7 +29,7 @@
         //   };
         // });
 
-        Auth.$createUser({
+        Auth.$createUserWithEmailAndPassword({
           email: $scope.email,
           password: $scope.password
         }).then(function(user) {
