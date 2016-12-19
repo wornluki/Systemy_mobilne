@@ -3,7 +3,7 @@
   <div class="user">
     <i class="fa fa-cog">
     </i>
-    <p class="user_name">Your balance: {{ data.balance }}</p>
+    <p class="user_name">Your balance: {{ data.balance.balance }}</p>
     <img ng-src="{{ vm.user.photoURL }}"></img>
     <p class="user_name">{{ vm.user.email }}</p>
   </div>
@@ -19,15 +19,24 @@
     <div class="list-buttons">
       <p class="list-name" ng-class='{active : vm.select == item}' ng-repeat="item in vm.lists | orderBy:'item'" ng-click="vm.selectAction2(item, $event)">{{ item }}</p>
     </div>
-    <div class="add-list">
+    <div layout="column">
+    <div class="add-list m-top">
       <form ng-submit="vm.addList()">
         <input type="text" class="white" placeholder="Dodaj listę" ng-model="nameListText">
       </form>
     </div>
-    <md-button ng-click="vm.logout()" class="md-raised md-warn">Logout</md-button>
+    <div class="add-list m-top">
+    <form ng-submit="vm.addBalance()">
+        <input type="text" class="white" placeholder="Dodaj balance" ng-model="balanceText">
+      </form>
+      </div>
+    <md-button ng-click="vm.logout()" class="md-raised md-warn m-top">Logout</md-button>
+    </div>
+    
   </div>
 
   <div class="list">
+    <!--balance {{ vm.listBalance }}-->
     <div class="add-item">
       <form class="add" ng-submit="vm.addItem()">
         <input type="text" placeholder="Name" class="long" ng-model="nameText">

@@ -20,13 +20,15 @@
         vm.logout = logout;
         vm.stateActive = '';
         vm.balance = 0;
+        vm.listBalance = 0;
         vm.cost = 0;
-        console.log()
+        vm.addBalance = addBalance;
+        
        
 
         vm.user.$bindTo($scope, "data").then(function() {
-          console.log($scope.data); 
-          vm.balance = $scope.data.balance
+          console.log($scope.data.balance.balance); 
+          vm.balance = $scope.data.balance.balance
         });
          
         //
@@ -34,15 +36,26 @@
         // ////////// Functions //
         function selectAction2(select, event) {
           vm.items = $firebaseArray(firebaseDataService.lists.child(select).child('items'));
-          
+          //vm.listBalance = $firebaseObject(firebaseDataService.lists.child(select));
+          console.log(vm.items);
+          // vm.listBalance = $firebaseArray(firebaseDataService.lists.child(select).child('items'));
           vm.select = select;
           vm.stateActive = select;
         };
+
+        function addBalance() {
+          var balance = $scope.balanceText;
+          balance = parseFloat($scope.data.balance.balance) + parseFloat(balance);
+          var listRef = firebaseDataService.users.child(currentAuth.uid);
+          listRef.child('balance').set({
+            balance: balance
+          })
+          $scope.balanceText = "";
+        }
       
 
         function addItem() {
           var iRef = listService.getItemsRef(vm.select);
-          console.log(currentAuth.email);
           iRef.child($scope.nameText).set({
             name: $scope.nameText,
             addedByUser: currentAuth.email,
@@ -50,10 +63,15 @@
             cost: $scope.cost
           })
           
-          vm.cost = vm.cost + parseFloat($scope.cost)
+          $scope.data.balance.balance =  $scope.data.balance.balance- $scope.cost;
+          console.log(vm.balance)
+
+          firebaseDataService.users.child(currentAuth.uid).child('balance').set({
+            balance: $scope.data.balance.balance
+          })
+
           $scope.nameText = "";
           $scope.cost = "";
-          $scope.data.balance = parseFloat($scope.data.balance) - parseFloat($scope.cost);
         };
         
         function addList() {
